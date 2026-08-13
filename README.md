@@ -1,5 +1,3 @@
-
-          
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +7,8 @@
     <title>Hamza Games</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             background: #0b1020;
             color: white;
@@ -27,53 +20,32 @@
             background: linear-gradient(135deg, #111a3a, #25104d);
         }
 
-        header h1 {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-        header p {
-            font-size: 20px;
-            color: #bfc7ff;
+        h1 {
+            font-size: 50px;
         }
 
         .games {
-            padding: 45px 20px;
-        }
-
-        .games h2 {
-            font-size: 35px;
-            margin-bottom: 30px;
+            padding: 50px 20px;
         }
 
         .game-card {
             max-width: 400px;
             margin: auto;
             padding: 30px;
-            border-radius: 20px;
             background: #151d38;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .game-card h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .game-card p {
-            color: #c8c8c8;
-            margin-bottom: 25px;
+            border-radius: 20px;
         }
 
         .play-button {
             display: inline-block;
-            padding: 14px 35px;
-            border-radius: 30px;
+            padding: 15px 35px;
             background: #6c5ce7;
             color: white;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .play-button:hover {
@@ -84,7 +56,6 @@
             margin-top: 50px;
             padding: 25px;
             background: #070b16;
-            color: #888;
         }
     </style>
 </head>
@@ -102,16 +73,15 @@
 
         <div class="game-card">
 
-            <h3>Hamza Ibrahim Game 🎯</h3>
+            <h2>Hamza Ibrahim Game 🎯</h2>
 
             <p>A game created by Hamza.</p>
 
-            <a
-                href="https://planet.mblock.cc/project/8267714"
+            <button
                 class="play-button"
-                target="_blank">
+                onclick="window.open('https://planet.mblock.cc/project/8267714', '_blank')">
                 ▶ Play Game
-            </a>
+            </button>
 
         </div>
 
