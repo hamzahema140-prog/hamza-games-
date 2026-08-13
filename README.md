@@ -1,8 +1,11 @@
+
+          
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Hamza Games</title>
 
     <style>
@@ -94,16 +97,24 @@
     </header>
 
     <section class="games">
+
         <h2>My Games</h2>
 
         <div class="game-card">
-            <h3>My First Game 🎯</h3>
+
+            <h3>Hamza Ibrahim Game 🎯</h3>
+
             <p>A game created by Hamza.</p>
 
-            <a href="#" class="play-button">
+            <a
+                href="https://planet.mblock.cc/project/8267714"
+                class="play-button"
+                target="_blank">
                 ▶ Play Game
             </a>
+
         </div>
+
     </section>
 
     <footer>
