@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Hamza Games</title>
+    <title>Hamza Games - Ball Game</title>
 
     <style>
         * {
@@ -13,195 +13,384 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: Arial, sans-serif;
             background: #080d1c;
             color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
-            overflow-x: auto;
+            overflow: hidden;
+            touch-action: none;
         }
 
-        header {
-            min-height: 70vh;
-            padding: 100px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #111a3a, #25104d);
+        h1 {
+            margin: 15px 0 5px;
+            font-size: 32px;
         }
 
-        header h1 {
-            font-size: clamp(42px, 8vw, 75px);
-            margin-bottom: 20px;
+        #score {
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
-        header p {
-            font-size: clamp(18px, 4vw, 25px);
-            color: #c8ceff;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1100px;
+        #game {
+            position: relative;
+            width: min(90vw, 700px);
+            height: min(65vh, 600px);
+            min-height: 400px;
             margin: auto;
-            padding: 60px 20px;
+            background: #111a3a;
+            border: 3px solid #6c5ce7;
+            border-radius: 15px;
+            overflow: hidden;
         }
 
-        .section-title {
-            font-size: clamp(32px, 6vw, 45px);
-            margin-bottom: 40px;
+        #ball {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: white;
+            border-radius: 50%;
+            left: 50%;
+            top: 80px;
+            transform: translateX(-50%);
         }
 
-        .games {
+        #bar {
+            position: absolute;
+            width: 130px;
+            height: 20px;
+            background: #6c5ce7;
+            border-radius: 10px;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #message {
+            margin: 12px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #controls {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 25px;
+            margin-top: 15px;
         }
 
-        .game-card {
-            width: 350px;
-            max-width: 100%;
-            padding: 35px 25px;
-            background: #151d38;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .game-icon {
-            font-size: 65px;
-            margin-bottom: 15px;
-        }
-
-        .game-card h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .game-card p {
-            color: #c8c8c8;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .play-button {
-            display: inline-block;
-            padding: 15px 32px;
+        .control {
+            width: 90px;
+            height: 65px;
+            border: none;
+            border-radius: 20px;
             background: #6c5ce7;
             color: white;
-            border-radius: 30px;
-            text-decoration: none;
+            font-size: 35px;
+            font-weight: bold;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .control:active {
+            transform: scale(0.92);
+            background: #8c7cff;
+        }
+
+        #restart {
+            display: none;
+            margin-top: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 20px;
+            background: #6c5ce7;
+            color: white;
             font-size: 18px;
             font-weight: bold;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .play-button:hover {
-            background: #8c7cff;
-            transform: scale(1.05);
-        }
-
-        .about {
-            background: #10162b;
-            padding: 60px 20px;
-        }
-
-        .about p {
-            max-width: 700px;
-            margin: auto;
-            color: #c8c8c8;
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        footer {
-            padding: 30px 20px;
-            background: #050812;
-            color: #888;
-        }
-
-        @media (max-width: 600px) {
-            header {
-                min-height: 60vh;
-                padding: 70px 15px;
-            }
-
-            .container {
-                padding: 45px 15px;
-            }
-
-            .game-card {
-                width: 100%;
-            }
-
-            .play-button {
-                padding: 16px 30px;
-                font-size: 18px;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🎮 Hamza Games</h1>
-        <p>Welcome to my gaming world!</p>
-    </header>
+    <h1>🎮 Hamza Games</h1>
 
-    <section class="container">
+    <div id="score">Score: 0</div>
 
-        <h2 class="section-title">🎮 My Games</h2>
+    <div id="game">
 
-        <div class="games">
+        <div id="ball"></div>
 
-            <div class="game-card">
+        <div id="bar"></div>
 
-                <div class="game-icon">🎯</div>
+    </div>
 
-                <h3>Hamza Ibrahim Game</h3>
+    <div id="message">
+        🎯 Catch the ball!
+    </div>
 
-                <p>
-                    A fun game created by Hamza.
-                    Try it and have fun!
-                </p>
+    <div id="controls">
 
-                <a
-                    href="https://planet.mblock.cc/project/8267714"
-                    class="play-button"
-                    target="_blank"
-                    rel="noopener">
-                    ▶ Play Game
-                </a>
+        <button class="control" id="left">⬅️</button>
 
-            </div>
+        <button class="control" id="right">➡️</button>
 
-        </div>
+    </div>
 
-    </section>
+    <button id="restart">
+        🔄 Play Again
+    </button>
 
-    <section class="about">
+<script>
 
-        <h2 class="section-title">👤 About Hamza</h2>
+    const game = document.getElementById("game");
+    const ball = document.getElementById("ball");
+    const bar = document.getElementById("bar");
 
-        <p>
-            Welcome to Hamza Games!
-            This website is created by Hamza to share
-            his games and projects with everyone.
-            More games are coming soon! 🚀
-        </p>
+    const scoreText = document.getElementById("score");
+    const message = document.getElementById("message");
+    const restartButton = document.getElementById("restart");
 
-    </section>
+    const leftButton = document.getElementById("left");
+    const rightButton = document.getElementById("right");
 
-    <footer>
-        © 2026 Hamza Games 🎮
-    </footer>
+    let ballX;
+    let ballY;
+
+    let ballSpeedX = 4;
+    let ballSpeedY = 4;
+
+    let barX;
+
+    let score = 0;
+
+    let gameRunning = true;
+
+    let moveLeft = false;
+    let moveRight = false;
+
+    const barSpeed = 8;
+
+    function resetGame() {
+
+        ballX = game.clientWidth / 2 - 12.5;
+        ballY = 80;
+
+        barX = game.clientWidth / 2 - 65;
+
+        ballSpeedX = 4;
+        ballSpeedY = 4;
+
+        score = 0;
+
+        gameRunning = true;
+
+        scoreText.textContent = "Score: 0";
+
+        message.textContent = "🎯 Catch the ball!";
+
+        restartButton.style.display = "none";
+
+        updateObjects();
+    }
+
+    function updateObjects() {
+
+        ball.style.left = ballX + "px";
+        ball.style.top = ballY + "px";
+
+        bar.style.left = (barX + 65) + "px";
+    }
+
+    function moveBar() {
+
+        if (!gameRunning) {
+            return;
+        }
+
+        if (moveLeft) {
+            barX -= barSpeed;
+        }
+
+        if (moveRight) {
+            barX += barSpeed;
+        }
+
+        const maxBarX = game.clientWidth - 130;
+
+        if (barX < 0) {
+            barX = 0;
+        }
+
+        if (barX > maxBarX) {
+            barX = maxBarX;
+        }
+    }
+
+    function moveBall() {
+
+        if (!gameRunning) {
+            return;
+        }
+
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        const ballSize = 25;
+
+        const gameWidth = game.clientWidth;
+        const gameHeight = game.clientHeight;
+
+        if (ballX <= 0) {
+
+            ballX = 0;
+
+            ballSpeedX = Math.abs(ballSpeedX);
+        }
+
+        if (ballX + ballSize >= gameWidth) {
+
+            ballX = gameWidth - ballSize;
+
+            ballSpeedX = -Math.abs(ballSpeedX);
+        }
+
+        if (ballY <= 0) {
+
+            ballY = 0;
+
+            ballSpeedY = Math.abs(ballSpeedY);
+        }
+
+        const barY = gameHeight - 25 - 20;
+
+        if (
+            ballY + ballSize >= barY &&
+            ballY + ballSize <= barY + 25 &&
+            ballX + ballSize >= barX &&
+            ballX <= barX + 130 &&
+            ballSpeedY > 0
+        ) {
+
+            ballY = barY - ballSize;
+
+            ballSpeedY = -Math.abs(ballSpeedY);
+
+            score++;
+
+            scoreText.textContent = "Score: " + score;
+
+            if (score >= 20) {
+
+                message.textContent = "🏆 ناجح! You Win!";
+
+                gameRunning = false;
+
+                restartButton.style.display = "inline-block";
+            }
+        }
+
+        if (ballY > gameHeight) {
+
+            message.textContent = "💥 Game Over!";
+
+            gameRunning = false;
+
+            restartButton.style.display = "inline-block";
+        }
+    }
+
+    function gameLoop() {
+
+        moveBar();
+
+        moveBall();
+
+        updateObjects();
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "ArrowLeft") {
+            moveLeft = true;
+        }
+
+        if (event.key === "ArrowRight") {
+            moveRight = true;
+        }
+
+    });
+
+    document.addEventListener("keyup", function(event) {
+
+        if (event.key === "ArrowLeft") {
+            moveLeft = false;
+        }
+
+        if (event.key === "ArrowRight") {
+            moveRight = false;
+        }
+
+    });
+
+    function startLeft(event) {
+
+        event.preventDefault();
+
+        moveLeft = true;
+    }
+
+    function stopLeft(event) {
+
+        event.preventDefault();
+
+        moveLeft = false;
+    }
+
+    function startRight(event) {
+
+        event.preventDefault();
+
+        moveRight = true;
+    }
+
+    function stopRight(event) {
+
+        event.preventDefault();
+
+        moveRight = false;
+    }
+
+    leftButton.addEventListener("touchstart", startLeft);
+    leftButton.addEventListener("touchend", stopLeft);
+    leftButton.addEventListener("touchcancel", stopLeft);
+
+    rightButton.addEventListener("touchstart", startRight);
+    rightButton.addEventListener("touchend", stopRight);
+    rightButton.addEventListener("touchcancel", stopRight);
+
+    leftButton.addEventListener("mousedown", startLeft);
+    leftButton.addEventListener("mouseup", stopLeft);
+    leftButton.addEventListener("mouseleave", stopLeft);
+
+    rightButton.addEventListener("mousedown", startRight);
+    rightButton.addEventListener("mouseup", stopRight);
+    rightButton.addEventListener("mouseleave", stopRight);
+
+    restartButton.addEventListener("click", function() {
+
+        resetGame();
+
+    });
+
+    resetGame();
+
+    gameLoop();
+
+</script>
 
 </body>
 </html>
